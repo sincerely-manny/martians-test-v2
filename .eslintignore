@@ -1,0 +1,7 @@
+**/*.spec.ts
+*.config.js
+.config.js
+/node_modules
+/.next
+.env
+/out/**/*.js

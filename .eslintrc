@@ -1,0 +1,86 @@
+{
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:react/jsx-runtime",
+        "plugin:@next/next/recommended"
+    ],
+    "parserOptions": {
+        "project": [
+            "./tsconfig.json"
+        ],
+        "extraFileExtensions:": [".html"]
+    },
+    "rules": {
+        "indent": "off",
+        "@typescript-eslint/indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "react/function-component-definition": [
+            2,
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function"
+            }
+        ],
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }],
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "jsx-a11y/label-has-associated-control": [
+            2,
+            {
+                "controlComponents": [
+                    "Field"
+                ],
+                "depth": 3
+            }
+        ],
+        "react/require-default-props": [
+            2,
+            {
+                "forbidDefaultForRequired": false,
+                "classes": "defaultProps",
+                "functions": "defaultArguments"
+            }
+        ],
+        "@next/next/no-img-element": "off",
+        "import/extensions": "off",
+        "react/jsx-props-no-spreading": "off",
+        
+        "no-void": ["off"]
+    },
+    "overrides": [
+        {
+            "files": [
+                "slice.ts",
+                "*.slice.ts"
+            ],
+            "rules": {
+                "no-param-reassign": [
+                    "off"
+                ]
+            }
+        }
+    ],
+    "plugins": [
+        "editorconfig",
+        "@typescript-eslint"
+    ]
+}
