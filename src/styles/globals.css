@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        @apply text-slate-700 text-2xl;
+    }
+
+    body {
+        @apply bg-slate-500;
+    }
+
+    h1, h2, h3 {
+        @apply uppercase font-sansAlt
+    }
+}
