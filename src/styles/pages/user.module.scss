@@ -73,34 +73,24 @@
     transition-duration: 1000ms;
     transition-property: all;
     transition-timing-function: $ease-in-out;
-}
 
-@media (width >= 640px) {
-    .container {
-        max-width: 640px;
+    @media ($at-sm) {
+        max-width: $sm;
     }
-}
-
-@media (width >= 768px) {
-    .container {
-        max-width: 768px;
+    
+    @media ($at-md) {
+        max-width: $md;
     }
-}
-
-@media (width >= 1024px) {
-    .container {
-        max-width: 1024px;
+    
+    @media ($at-lg) {
+        max-width: $lg;
     }
-}
-
-@media (width >= 1280px) {
-    .container {
-        max-width: 1280px;
+    
+    @media ($at-xl) {
+        max-width: $xl;
     }
-}
-
-@media (width >= 1536px) {
-    .container {
-        max-width: 1536px;
+    
+    @media ($at-xxl) {
+        max-width: $xxl;
     }
 }

@@ -219,25 +219,27 @@ export default () => {
                         <h1 className="mb-10 w-full text-right text-2xl md:text-6xl xl:text-8xl">
                             LET&apos;S
                             {' '}
-                            <Link
-                                href="/user/sign-in"
-                                aria-selected={slug === 'sign-in' || !slug}
-                                className="group inline-flex flex-col opacity-50 transition-all duration-500 ease-in aria-selected:opacity-100"
-                            >
-                                <span>SIGN IN</span>
-                                <div className="h-1 w-0 self-end bg-slate-700 transition-all duration-500 ease-in group-aria-selected:w-full" />
-                            </Link>
-                            {' '}
-                            /
-                            {' '}
-                            <Link
-                                href="/user/sign-up"
-                                aria-selected={slug === 'sign-up'}
-                                className="group inline-flex flex-col opacity-50 transition-all duration-500 ease-in aria-selected:opacity-100"
-                            >
-                                <span>SIGN UP</span>
-                                <div className="h-1 w-0 self-start bg-slate-700 transition-all duration-500 ease-in group-aria-selected:w-full" />
-                            </Link>
+                            <nav>
+                                <Link
+                                    href="/user/sign-in"
+                                    aria-selected={slug === 'sign-in' || !slug}
+                                    className="group inline-flex flex-col opacity-50 transition-all duration-500 ease-in aria-selected:opacity-100"
+                                >
+                                    <span>SIGN IN</span>
+                                    <div className="h-1 w-0 self-end bg-slate-700 transition-all duration-500 ease-in group-aria-selected:w-full" />
+                                </Link>
+                                {' '}
+                                /
+                                {' '}
+                                <Link
+                                    href="/user/sign-up"
+                                    aria-selected={slug === 'sign-up'}
+                                    className="group inline-flex flex-col opacity-50 transition-all duration-500 ease-in aria-selected:opacity-100"
+                                >
+                                    <span>SIGN UP</span>
+                                    <div className="h-1 w-0 self-start bg-slate-700 transition-all duration-500 ease-in group-aria-selected:w-full" />
+                                </Link>
+                            </nav>
                         </h1>
                         <Tabs.Content
                             value="sign-in"

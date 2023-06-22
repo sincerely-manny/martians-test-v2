@@ -4,9 +4,22 @@ $font-sans-alt: var(--font-sans-alt);
 
 $slate-300: #cbd5e1;
 $slate-400: #94a3b8;
+$slate-700: #334155;
 $pink-300: #f9a8d4;
 $purple-300: #d8b4fe;
 $indigo-300: #a5b4fc;
 $indigo-500: #6366f1;
 
 $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+$sm: 640px; 
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1536px;
+
+$at-sm: 'width >= '+$sm;
+$at-md: 'width >= '+$md;
+$at-lg: 'width >= '+$lg;
+$at-xl: 'width >= '+$xl;
+$at-xxl: 'width >= '+$xxl;
