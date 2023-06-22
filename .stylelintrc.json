@@ -1,0 +1,24 @@
+{ 
+    "extends": [
+        "stylelint-config-idiomatic-order",
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-selector-bem-pattern",
+        "stylelint-order",
+        "stylelint-scss"
+    ],
+    "customSyntax": "postcss-scss",
+    "rules": {
+        "selector-class-pattern": null,
+        "plugin/selector-bem-pattern": {
+            "preset": "bem",
+            "implicitComponents": "src/components/**/*.*css"
+        },
+        "indentation": [
+            4
+        ],
+        "string-quotes": "single",
+        "import-notation": "string"
+    }
+ }

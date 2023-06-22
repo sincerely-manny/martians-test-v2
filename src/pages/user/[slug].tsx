@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/Form';
 import { Button } from '@/components/ui/Button';
 import MainLayout from '@/components/MainLayout';
+import scss from '@/styles/pages/user.module.scss';
 
 export default () => {
     const router = useRouter();
@@ -198,19 +199,19 @@ export default () => {
 
     return (
         <MainLayout>
-            <div className="col-span-1 col-start-1 col-end-1 row-span-1 row-start-1 row-end-1 w-screen overflow-hidden">
+            <div className={scss['background__cursor-shadow-container']}>
                 <div
-                    className="w-[1000px] transition-transform will-change-transform duration-0 ease-in-out"
+                    className={scss['cursor-shadow']}
                     ref={cursorDiv}
                 >
-                    <div className="-ml-[50%] -mt-[50%] aspect-[4/3] w-full origin-center -rotate-45 rounded-full bg-indigo-500 opacity-100" />
+                    <div className={scss.fill} />
                 </div>
             </div>
-            <div className="col-span-1 col-start-1 col-end-1 row-span-1 row-start-1 row-end-1 w-screen backdrop-blur-[300px]" />
-            <div className="col-span-1 col-start-1 col-end-1 row-span-1 row-start-1 row-end-1 w-screen bg-[url('/img/fuzzy-fuzz.gif')] opacity-10" />
-            <div className="col-span-1 col-start-1 col-end-1 row-span-1 row-start-1 row-end-1 w-screen overflow-hidden bg-gradient-to-br from-pink-300 via-purple-300 to-indigo-300 opacity-50 backdrop-blur-xl" />
-            <div className="col-span-1 col-start-1 col-end-1 row-span-1 row-start-1 row-end-1 flex items-center justify-center">
-                <div className="container relative my-10 flex flex-col items-center justify-center gap-12 rounded-lg bg-slate-400 bg-opacity-10 px-4 py-16 shadow-2xl backdrop-blur-sm transition-all duration-1000">
+            <div className={scss['background__blur-over-cursor-shadow']} />
+            <div className={scss['background__fuzz-gif']} />
+            <div className={scss.background__gradient} />
+            <div className={scss['content-grid']}>
+                <div className={scss.container}>
                     <Tabs.Root
                         value={slug?.toString() || 'sign-in'}
                         className="w-full min-w-fit max-w-lg transition-all sm:w-1/2"

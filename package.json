@@ -1,5 +1,5 @@
 {
-  "name": "martians-test-v1",
+  "name": "martians-test-v2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -63,6 +63,13 @@
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
     "prisma": "^4.14.0",
+    "sass": "^1.63.4",
+    "stylelint": "^15.8.0",
+    "stylelint-config-idiomatic-order": "^9.0.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-selector-bem-pattern": "^2.1.1",
     "typescript": "^5.0.4"
   },
   "ct3aMetadata": {

@@ -1,0 +1,9 @@
+@import '/src/styles/variables.scss';
+
+.main-layout {
+    display: grid;
+    min-height: 100vh;
+    align-items: stretch;
+    background-color: $slate-300;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}

@@ -1,0 +1,8 @@
+@import 'preflight.scss';
+@import 'variables.scss';
+
+body {
+    background-color: #64748b;
+    font-family: $font-sans;
+    font-size: 16px;
+}

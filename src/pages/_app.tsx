@@ -3,7 +3,8 @@ import { AppProps } from 'next/app';
 import { Big_Shoulders_Text, Inconsolata, Montserrat } from 'next/font/google';
 import { CookiesProvider } from 'react-cookie';
 import { api } from '@/utils/api';
-import '@/styles/globals.css';
+// import '@/styles/globals.css';
+import '@/styles/global.scss';
 
 const sans = Montserrat({
     weight: ['400'],

@@ -1,0 +1,106 @@
+@import '../variables.scss';
+
+.background__cursor-shadow-container,
+.background__blur-over-cursor-shadow,
+.background__fuzz-gif,
+.background__gradient,
+.content-grid {
+    width: 100vw;
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}
+
+.background__cursor-shadow-container {
+    overflow: hidden;
+
+    .cursor-shadow {
+        width: 1000px;
+        transition-duration: 0ms;
+        transition-property: transform;
+        transition-timing-function: $ease-in-out;
+        will-change: transform;
+
+        .fill {
+            width: 100%;
+            border-radius: 9999px;
+            margin-top: -50%;
+            margin-left: -50%;
+            aspect-ratio: 4/3;
+            background-color: $indigo-500;
+            transform: rotate(-45deg);
+            transform-origin: center;
+        }
+    }
+}
+
+.background__blur-over-cursor-shadow {
+    backdrop-filter: blur(300px);
+}
+
+.background__fuzz-gif {
+    background-image: url('/img/fuzzy-fuzz.gif');
+    opacity: 0.1;
+}
+
+.background__gradient {
+    overflow: hidden;
+    backdrop-filter: blur(24px);
+    background-image: linear-gradient(to right bottom, $pink-300, $purple-300, $indigo-300);
+    opacity: 0.5;
+}
+
+.content-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem; /* 64px 16px */
+    border-radius: 0.5rem/* 8px */;
+    margin-top: 2.5rem/* 40px */;
+    margin-bottom: 2.5rem/* 40px */;
+    backdrop-filter: blur(4px);
+    background-color: rgba($slate-400, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0 0 0 / 25%);
+    gap: 3rem/* 48px */;
+    transition-duration: 1000ms;
+    transition-property: all;
+    transition-timing-function: $ease-in-out;
+}
+
+@media (width >= 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+@media (width >= 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (width >= 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+@media (width >= 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+@media (width >= 1536px) {
+    .container {
+        max-width: 1536px;
+    }
+}
