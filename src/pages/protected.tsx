@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useCookies } from 'react-cookie';
 import MainLayout from '@/components/MainLayout';
 import kitten from '@/../public/img/cute-kitten.jpg';
-import { Button } from '@/components/ui/Button';
+import Button from '@/components/Button';
 
 export default () => {
     const router = useRouter();

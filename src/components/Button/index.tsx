@@ -2,10 +2,10 @@ import { ButtonHTMLAttributes } from 'react';
 import scss from './button.module.scss';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-    type: 'button' | 'submit';
+    type?: 'button' | 'submit';
 };
 
-export default ({ children, type, className }: ButtonProps) => (
+export default ({ children, type = 'button', className }: ButtonProps) => (
     <button
         type={type === 'submit' ? 'submit' : 'button'}
         className={`${scss.button || ''} ${className || ''}`}

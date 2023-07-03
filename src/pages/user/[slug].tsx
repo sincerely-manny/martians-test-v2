@@ -84,6 +84,7 @@ export default () => {
                         <Tabs.Content
                             value="sign-in"
                             className={scss.tabs__content}
+                            tabIndex={-1}
                         >
                             <Form.Root
                                 control={signInForm}
