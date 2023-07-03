@@ -113,7 +113,10 @@ export default () => {
                                         type="password"
                                     />
                                 </Form.Item>
-                                <Button type="submit">
+                                <Button
+                                    type="submit"
+                                    disabled={!!signInForm.errors}
+                                >
                                     Submit
                                 </Button>
                             </Form.Root>
@@ -122,6 +125,7 @@ export default () => {
                         <Tabs.Content
                             value="sign-up"
                             className={scss.tabs__content}
+                            tabIndex={-1}
                         >
                             -
                         </Tabs.Content>
