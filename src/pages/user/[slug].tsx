@@ -9,8 +9,9 @@ import * as z from 'zod';
 import scss from '@/styles/pages/user.module.scss';
 import signInSchema from '@/lib/schema/signIn';
 import MainLayout from '@/components/MainLayout';
-import Form, { useForm } from '@/components/Form';
+import Form from '@/components/Form';
 import Button from '@/components/Button';
+import useForm from '@/components/Form/useForm';
 
 export default () => {
     const router = useRouter();

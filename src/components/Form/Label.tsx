@@ -1,29 +1,33 @@
 import {
     Children,
     LabelHTMLAttributes,
-    PropsWithChildren,
     cloneElement,
     isValidElement,
 } from 'react';
 import * as z from 'zod';
-import Input from './Input';
-import useForm from './useForm';
-import Root from './Root';
-import Label from './Label';
-import Message from './Message';
 import scss from './form.module.scss';
+import useForm from './useForm';
 
-type ItemProps<T extends z.AnyZodObject> = PropsWithChildren & {
-    name: keyof z.infer<T>;
+type LabelProps<T extends z.AnyZodObject> = LabelHTMLAttributes<HTMLLabelElement> & {
     control?: ReturnType<typeof useForm<T>>;
+    name?: keyof z.infer<T>;
 };
 
-const Item = <T extends z.AnyZodObject>({ children, name, control = undefined }: ItemProps<T>) => {
+export default <T extends z.AnyZodObject>({
+    children,
+    className,
+    htmlFor,
+    name = undefined,
+    control = undefined,
+}: LabelProps<T>) => {
+    if (!name) {
+        throw new Error('Label must have a name');
+    }
     if (!control) {
-        throw new Error('Item must have a control');
+        throw new Error('Label must have a control');
     }
     return (
-        <div className={scss.form__item}>
+        <label className={`${scss.form__label || ''} ${className || ''}`} htmlFor={htmlFor}>
             {Children.map(children, (child) => {
                 if (!isValidElement(child)) {
                     return child;
@@ -34,14 +38,6 @@ const Item = <T extends z.AnyZodObject>({ children, name, control = undefined }:
                     control,
                 } as LabelHTMLAttributes<HTMLElement>);
             })}
-        </div>
+        </label>
     );
-};
-
-export default {
-    Root,
-    Input,
-    Label,
-    Message,
-    Item,
 };
