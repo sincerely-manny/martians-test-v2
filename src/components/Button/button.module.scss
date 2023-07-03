@@ -1,0 +1,58 @@
+@import '/src/styles/variables.scss';
+
+
+.button__background {
+    position: absolute;
+    width: 400%;
+    height: 400px;
+    background-image: linear-gradient(to right bottom, $slate-500, $pink-500);
+    inset: 0;
+    transition: all 0.3s $ease-in-out;
+}
+
+.button {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    background: transparent;
+    color: white;
+    font-family: $font-mono;
+    outline: $slate-500 dashed 1px;
+    outline-offset: -2px;
+    transition: all 150ms $ease-elastic;
+    user-select: none;
+    
+    &:focus {
+        outline-offset: 8px;
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    /* stylelint-disable-next-line plugin/selector-bem-pattern */
+    &[data-loading~='true'] {
+        /* stylelint-disable-next-line plugin/selector-bem-pattern */
+        .button__background {
+            animation: gradient-flow 5s infinite;
+        }
+    }
+
+    &:active {
+        .button__background {
+            transform: translate(-50%, -50%);
+        }
+    }
+
+}
+
+.button__content {
+    position: relative;
+}

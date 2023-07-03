@@ -1,16 +1,23 @@
 $font-sans: var(--font-sans);
 $font-serif: var(--font-serif);
 $font-sans-alt: var(--font-sans-alt);
+$font-mono: var(--font-mono);
 
-$slate-300: #cbd5e1;
-$slate-400: #94a3b8;
-$slate-700: #334155;
-$pink-300: #f9a8d4;
-$purple-300: #d8b4fe;
 $indigo-300: #a5b4fc;
 $indigo-500: #6366f1;
+$pink-300: #f9a8d4;
+$pink-500: #ec4899;
+$purple-300: #d8b4fe;
+$red-700: #b91c1c;
+$slate-300: #cbd5e1;
+$slate-400: #94a3b8;
+$slate-500: #64748b;
+$slate-700: #334155;
 
 $ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-elastic: cubic-bezier(.75,-0.5,0,1.75);
 
 $sm: 640px; 
 $md: 768px;
@@ -23,3 +30,59 @@ $at-md: 'width >= '+$md;
 $at-lg: 'width >= '+$lg;
 $at-xl: 'width >= '+$xl;
 $at-xxl: 'width >= '+$xxl;
+
+@keyframes tab-hide {
+    from {
+        max-height: 1000px;
+        opacity: 1;
+    }
+
+    to {
+        max-height: 0;
+        opacity: 0
+    }
+}
+
+@keyframes tab-show {
+    from {
+        max-height: 0; 
+        opacity: 0;
+    }
+
+    to {
+        max-height: 1000px;
+        opacity: 1;
+    }
+}
+
+@keyframes shake-x {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-10px, 0, 0);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+@keyframes gradient-flow {
+    0%, 100% {
+        transform: translate(0%, 0%);
+    }
+
+    25% {
+        transform: translate(-50%, 0%);
+    }
+
+    50% {
+        transform: translate(-50%, -50%);
+    }
+
+    75% {
+        transform: translate(0%, -50%);
+    }
+}

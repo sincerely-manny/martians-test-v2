@@ -62,14 +62,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1rem; /* 64px 16px */
-    border-radius: 0.5rem/* 8px */;
-    margin-top: 2.5rem/* 40px */;
-    margin-bottom: 2.5rem/* 40px */;
+    padding: 4rem 1rem; 
+    border-radius: 0.5rem ;
+    margin-top: 2.5rem ;
+    margin-bottom: 2.5rem ;
     backdrop-filter: blur(4px);
     background-color: rgba($slate-400, 0.1);
     box-shadow: 0 25px 50px -12px rgba(0 0 0 / 25%);
-    gap: 3rem/* 48px */;
+    gap: 3rem ;
     transition-duration: 1000ms;
     transition-property: all;
     transition-timing-function: $ease-in-out;
@@ -77,20 +77,82 @@
     @media ($at-sm) {
         max-width: $sm;
     }
-    
+
     @media ($at-md) {
         max-width: $md;
     }
-    
+
     @media ($at-lg) {
         max-width: $lg;
     }
-    
+
     @media ($at-xl) {
         max-width: $xl;
     }
-    
+
     @media ($at-xxl) {
         max-width: $xxl;
+    }
+}
+
+.tabs__root {
+    width: 100%;
+    min-width: fit-content;
+    max-width: 32rem ;
+    transition: all 150ms $ease-in-out;
+
+    @media ($at-sm) {
+        width: 50%;
+    }
+}
+
+.tabs__navbar {
+    width: 100%;
+    margin-bottom: 2.5rem ;
+    text-align: right;
+
+    .underline {
+        width: 0;
+        height: 0.25rem;
+        background-color: $slate-700;
+        transition: all 500ms $ease-in;
+        
+        &.underline_start {
+            align-self: flex-start;
+            
+        }
+
+        &.underline_end {
+            align-self: flex-end;
+        }
+    }
+    
+    .navlink {
+        display: inline-flex;
+        flex-direction: column;
+        opacity: 0.5;
+        transition: all 500ms $ease-in;
+        
+        &[aria-selected='true'] {
+            opacity: 1;
+
+            .underline {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.tabs__content {
+    width: 100%;
+    font-size: 0.875rem;
+    transform-origin: top left;
+
+    &[data-state='active'] {
+        animation: tab-show 0.5s $ease-out;
+    }
+
+    &[data-state='inactive'] {
+        animation: tab-hide 0.5s $ease-out;
     }
 }
