@@ -10,30 +10,40 @@ import * as z from 'zod';
 import debounce from 'lodash.debounce';
 import scss from './form.module.scss';
 import useForm from './useForm';
+import { FormErrors } from './errors.type';
 
-type FromProps<T extends z.AnyZodObject> = FormHTMLAttributes<HTMLFormElement> & {
+type FromProps<T extends z.Schema> = FormHTMLAttributes<HTMLFormElement> & {
     control: ReturnType<typeof useForm<T>>;
 };
 
-export default <T extends z.AnyZodObject>({ children, onSubmit, control }: FromProps<T>) => {
+export default <T extends z.Schema>({ children, onSubmit, control }: FromProps<T>) => {
     const {
         formData, schema, setErrors, setIsSubmitted,
     } = control;
 
-    const errorCheck = useMemo(() => (data: z.TypeOf<T>) => {
+    const validate = useMemo(() => (data: z.TypeOf<T>) => {
         const parsedData = schema.safeParse(data);
         if (!parsedData.success) {
-            setErrors(parsedData.error.format() as z.ZodFormattedError<T>);
+            const errors: FormErrors<T> = {};
+            Object.entries(parsedData.error.format()).forEach(([key, value]) => {
+                const v = value as z.ZodFormattedError<T>;
+                // eslint-disable-next-line no-underscore-dangle
+                if (v && v._errors && key !== '_errors') {
+                    // eslint-disable-next-line no-underscore-dangle
+                    errors[key as keyof z.infer<T>] = v._errors;
+                }
+            });
+            setErrors(errors);
         } else {
             setErrors(null);
         }
     }, [schema, setErrors]);
 
-    const errorCheckDebounced = useMemo(() => debounce(errorCheck, 100), [errorCheck]);
+    const validateDebounced = useMemo(() => debounce(validate, 100), [validate]);
 
     useEffect(() => {
-        errorCheckDebounced(formData);
-    }, [errorCheckDebounced, formData, schema, setErrors]);
+        validateDebounced(formData);
+    }, [validateDebounced, formData, schema, setErrors]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

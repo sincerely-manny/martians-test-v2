@@ -6,12 +6,13 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default ({
-    children, type = 'button', className, disabled,
+    children, type = 'button', className, disabled, onClick,
 }: ButtonProps) => (
     <button
         type={type === 'submit' ? 'submit' : 'button'}
         className={`${scss.button || ''} ${className || ''}`}
         disabled={disabled}
+        onClick={onClick}
     >
         <div className={scss.button__background} />
         <div className={scss.button__content}>{children}</div>

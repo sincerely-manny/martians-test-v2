@@ -5,12 +5,12 @@ import * as z from 'zod';
 import scss from './form.module.scss';
 import useForm from './useForm';
 
-type MessageProps<T extends z.AnyZodObject> = HTMLAttributes<HTMLDivElement> & {
+type MessageProps<T extends z.Schema> = HTMLAttributes<HTMLDivElement> & {
     control?: ReturnType<typeof useForm<T>>;
     name?: keyof z.infer<T>;
 };
 
-export default <T extends z.AnyZodObject>({
+export default <T extends z.Schema>({
     children,
     control = undefined,
     name = undefined,
@@ -21,9 +21,8 @@ export default <T extends z.AnyZodObject>({
     if (!control) {
         throw new Error('Message must have a control');
     }
-    const errors = control.errors
-    // eslint-disable-next-line no-underscore-dangle
-        ? (control.errors[name] as z.ZodFormattedError<T> | undefined)?._errors.join(', ') : null;
+    const errors = (control.errors && control.errors[name]?.length)
+        ? control.errors[name]?.join(', ') : null;
     const touched = control.touched[name];
     return (
         <span className={scss.form__message}>

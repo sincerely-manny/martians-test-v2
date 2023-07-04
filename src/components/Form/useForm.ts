@@ -2,17 +2,24 @@ import {
     useState,
 } from 'react';
 import * as z from 'zod';
+import { FormErrors } from './errors.type';
 
-type UseFormParams<T extends z.AnyZodObject> = {
+type UseFormParams<T extends z.Schema> = {
     schema: T;
     initialValues: z.infer<T>;
 };
 
-const useForm = <T extends z.AnyZodObject>({ schema, initialValues }: UseFormParams<T>) => {
+const useForm = <T extends z.Schema>({ schema, initialValues }: UseFormParams<T>) => {
     const [formData, setFormData] = useState(initialValues);
-    const [errors, setErrors] = useState<z.ZodFormattedError<T> | null>(null);
+    const [errors, setErrors] = useState<FormErrors<T> | null>(null);
     const [touched, setTouched] = useState<Partial<Record<keyof z.infer<T>, boolean>>>({});
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+
+    const setError = (
+        field: keyof FormErrors<T>,
+        messages: string[],
+    ) => setErrors({ ...errors as FormErrors<T>, [field]: messages });
 
     return {
         schema,
@@ -24,6 +31,9 @@ const useForm = <T extends z.AnyZodObject>({ schema, initialValues }: UseFormPar
         setTouched,
         isSubmitted,
         setIsSubmitted,
+        disabled,
+        setDisabled,
+        setError,
     };
 };
 
