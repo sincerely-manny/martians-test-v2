@@ -12,6 +12,7 @@ export default ({
         type={type === 'submit' ? 'submit' : 'button'}
         className={`${scss.button || ''} ${className || ''}`}
         disabled={disabled}
+        aria-disabled={disabled}
         onClick={onClick}
     >
         <div className={scss.button__background} />

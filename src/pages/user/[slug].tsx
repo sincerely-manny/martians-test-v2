@@ -2,9 +2,12 @@ import * as Tabs from '@radix-ui/react-tabs';
 import throttle from 'lodash.throttle';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useRef, useState } from 'react';
+import {
+    useCallback, useEffect, useRef, useState,
+} from 'react';
 import { useCookies } from 'react-cookie';
 import { CheckCircle, Disc3 } from 'lucide-react';
+import debounce from 'lodash.debounce';
 import scss from '@/styles/pages/user.module.scss';
 import signInSchema from '@/lib/schema/signIn';
 import MainLayout from '@/components/MainLayout';
@@ -98,6 +101,39 @@ export default () => {
             })
             .catch(() => {});
     };
+
+    const [debouncedEmail, setDebouncedEmail] = useState(signUpForm.formData.email);
+    const [debouncedUsername, setDebouncedUsername] = useState(signUpForm.formData.username);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedSetDebouncedEmail = useCallback(debounce(setDebouncedEmail, 500), []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const debouncedSetDebouncedUsername = useCallback(debounce(setDebouncedUsername, 500), []);
+
+    useEffect(() => {
+        debouncedSetDebouncedEmail(signUpForm.formData.email);
+        debouncedSetDebouncedUsername(signUpForm.formData.username);
+    }, [
+        debouncedSetDebouncedEmail,
+        debouncedSetDebouncedUsername,
+        signUpForm.formData.email,
+        signUpForm.formData.username,
+    ]);
+
+    const checkUniqueEmail = api.user.checkUnique.useQuery({ email: debouncedEmail });
+    const checkUniqueUsername = api.user.checkUnique.useQuery({ username: debouncedUsername });
+
+    useEffect(() => {
+        if (checkUniqueEmail.data?.email) {
+            signUpForm.setError('email', ['is already registered']);
+            signUpForm.setTouched((prev) => ({ ...prev, email: true }));
+        }
+        if (checkUniqueUsername.data?.username) {
+            signUpForm.setError('username', ['is already taken']);
+            signUpForm.setTouched((prev) => ({ ...prev, username: true }));
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [checkUniqueEmail.data?.email, checkUniqueUsername.data?.username]);
 
     useEffect(() => {
         if (isSuccess) {
@@ -233,6 +269,7 @@ export default () => {
                                         placeholder="mail@gmail.com"
                                         autoComplete="off"
                                         type="text"
+                                        data-loading={checkUniqueEmail.isFetching}
                                     />
                                 </Form.Item>
                                 <Form.Item name="username">
@@ -241,7 +278,11 @@ export default () => {
                                         {' '}
                                         <Form.Message />
                                     </Form.Label>
-                                    <Form.Input type="text" autoComplete="off" />
+                                    <Form.Input
+                                        type="text"
+                                        autoComplete="off"
+                                        data-loading={checkUniqueUsername.isFetching}
+                                    />
                                     <Form.Description>
                                         1-50 characters, starts with a letter, only letters and
                                         numbers
