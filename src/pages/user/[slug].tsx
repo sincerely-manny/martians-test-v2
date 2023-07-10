@@ -138,8 +138,9 @@ export default () => {
     useEffect(() => {
         if (isSuccess) {
             signInForm.setDisabled(true);
+            signUpForm.setDisabled(true);
         }
-    }, [isSuccess, signInForm]);
+    }, [isSuccess, signInForm, signUpForm]);
 
     useEffect(() => {
         const cursor = cursorDiv.current;
